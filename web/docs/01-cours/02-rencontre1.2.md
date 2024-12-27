@@ -1,3 +1,3 @@
-# Rencontre 1.2
+# Cours 2 - Forms, lists, events
 
 

@@ -1,3 +1,3 @@
-# Rencontre 1.1
+# Cours 1 - Intro à Angular
 
 
