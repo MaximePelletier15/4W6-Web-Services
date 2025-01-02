@@ -1,6 +1,6 @@
 # Cours 1 - Intro à Angular
 
-### Application Web ASP.NET Core <u>sans</u> client Angular
+### 🙈 Application Web ASP.NET Core <u>sans</u> client Angular
 
 Quand on envoie une requête HTTP au serveur sur lequel l'application ASP.NET Core roule, le serveur 
 nous renvoie du **HTML**, du **CSS** et du **JavaScript** pour que la page Web à afficher chez
@@ -8,7 +8,7 @@ l'utilisateur soit toute prête. 🎁👌
 
 ![Résultat d'une requête HTTP sans client Angular](../../static/img/cours1/without_angular.png)
 
-### Application Web ASP.NET Core <u>avec</u> client Angular
+### ✅ Application Web ASP.NET Core <u>avec</u> client Angular
 
 Désormais, il y a une application Web cliente (c'est-à-dire qu'elle est exécutée sur l'ordinateur de 
 l'utilisateur) qui contient tout le HTML, le CSS et le JavaScript du site Web visité.
@@ -20,14 +20,14 @@ de JSON ou de XML et l'application Angular s'occupera de « pluguer » les donn�
 ![Résultat d'une requête HTTP avec client Angular](../../static/img/cours1/with_angular.png)
 
 Pour que le navigateur de l'utilisateur ait accès au client Angular, le serveur doit lui envoyer le
-projet Angular compilé en entier lorsque l'utilisateur fait sa première requête au site Web.
+projet Angular en entier lorsque l'utilisateur fait sa première requête au site Web.
 
 Par exemple, lorsque je souhaite naviguer sur YouTube, voici ce qu'il se passe, grossièrement :
 
 1. J'envoie ma **première requête HTTP** (`https://www.youtube.ca`) à YouTube.
 2. L'application Web serveur de YouTube me retourne les choses suivantes :
 
-    * ⚙ Une application Angular compilée (inclut tous le **HTML**, le **CSS** et le **JavaScript** du site Web)
+    * ⚙ Une application Angular (inclut tous le **HTML**, le **CSS** et le **JavaScript** du site Web)
     * 📦 Les **données** à afficher sur la page d'accueil du site Web (Quelques thumbnails de vidéo, les titres des vidéos, etc.)
 
 3. Ma navigation se poursuit. Par exemple, je clique sur une vidéo. (Ce qui envoie une **deuxième requête HTTP** à Youtube : `https://www.youtube.com/watch?v=dQw4w9WgXcQ`)
@@ -42,7 +42,7 @@ Par exemple, lorsque je souhaite naviguer sur YouTube, voici ce qu'il se passe, 
 
 | Aspect | Avec Angular | Sans Angular |
 | - | - | - |
-| 🏁 Première requête à un site Web | Recevoir l'application cliente Angular compilée en entier. **Plus long** pour charger la page d'accueil. | Recevoir un peu de HTML, de CSS et de JavaScript. |
+| 🏁 Première requête à un site Web | Recevoir l'application cliente Angular en entier. **Plus long** pour charger la page d'accueil. | Recevoir un peu de HTML, de CSS et de JavaScript. |
 | 🚩 Requêtes suivantes | Recevoir seulement les nouvelles données à intégrer à la page Web. **Plus court**. | Recevoir le HTML, le CSS et le JavaScript de la nouvelle page Web. |
 | ⚡ Charge du serveur | Allégée : il n'a plus besoin de construire les pages Web. (Les views) | Alourdie : il doit construire chaque page Web avant de les envoyer. |
 | 🖥 Charge du client | Alourdie : il y a plus de JavaScript qui travaille côté client pour faire évoluer les pages Web dynamiquement. | Allégée : les pages Web arrivent toutes faites. Il y a parfois un peu de JavaScript pour rendre les pages Web dynamiques, mais c'est léger. |
@@ -87,9 +87,9 @@ de connexion à la base de données et aux requêtes SQL)
 
 :::
 
-### 🛠 Outils à installer (à la maison seulement ! 🏠)
+### 🛠 Outils à installer (à la maison seulement)
 
-⛔ Ces outils sont déjà installés à l'école.
+⛔ Ces outils sont déjà installés à l'école. Cette section n'est pertinente qu'à la maison. 🏠
 
 #### NPM
 <center>![Logo de NPM](../../static/img/cours1/npm.png)</center>
@@ -244,7 +244,8 @@ class SkibidiCar{
 
 :::note
 
-Les types que nous utiliserons le plus en TypeScript seront `boolean`, `null`, `undefined` (ou `?:` devant le type), `number` (Remplace float, int, etc.) et `string`.
+Les types que nous utiliserons le plus en TypeScript seront `boolean`, `null`, `undefined` (ou `?:` devant le type), 
+`number` (Remplace float, int, etc.), `string`, `number[]` et `string[]`. (`[]` signifie tableau)
 
 :::
 
@@ -308,6 +309,7 @@ Si ce n'est pas clair, voici deux classes dont le fonctionnement et les proprié
 * Il est obligatoire de préciser le type des paramètres.
 * N'oubliez pas le préfixe `this` lorsque vous faites référence à une propriété de classe.
 * Il est possible de déclarer des variables locales à l'aide du mot-clé `let`.
+    * Si une valeur lui est immédiatement assignée, préciser le type n'est pas obligatoire, mais on peut.
 
 ```ts showLineNumbers
 playWithToy(toyName : string) : string {
@@ -315,3 +317,327 @@ playWithToy(toyName : string) : string {
     return msg;
 }
 ```
+
+### 🌳 Environnements de développement
+
+#### Visual Studio code
+
+<center>![Logo de VS Code](../../static/img/cours1/vscode.png)</center>
+
+Nous l'utiliserons pour travailler sur nos projets **Angular**. (Semaines 1 à 15)
+
+#### Visual Studio
+
+<center>![Logo de Visual Studio](../../static/img/cours1/vs.png)</center>
+
+Nous l'utiliserons pour travailler sur nos projets **ASP.NET Core**. (Semaines 8 à 15)
+
+### 🐣 Créer un projet Angular
+
+Avec l'explorateur de fichiers Windows, rendez-vous dans le répertoire parent de votre choix, puis faites `shift + clic-droit` -> `Ouvrir PowerShell`.
+
+Tapez ensuite la commande `ng new nomDeVotreProjet`. Vous aurez deux choix à faire :
+
+1. Format de feuilles de styles -> `CSS`
+2. Activer le rendu côté serveur -> `Non`
+
+:::info
+
+Le Server-Side Rendering (rendu côté serveur) permet de charger plus rapidement la page d'accueil du site Web après une première requête.
+En temps normal, recevoir l'application Angular et l'exécuter côté client prend pas mal de temps suite à la première requête, alors pour y remédier,
+le serveur, en plus d'envoyer l'application Angular au client, va également préparer un rendu HTML / CSS de la page d'accueil pour l'envoyer
+au client et l'afficher dans le navigateur, le temps que l'application Angular soit exécutée. Lors du développement, cette option n'est pas nécessaire.
+
+:::
+
+Le gabarit de départ contient plusieurs fichiers essentiels :
+
+<center>![Fichiers de départ d'un projet Angular](../../static/img/cours1/angular_files.png)</center>
+
+### 🚬 Gestion des dépendances
+
+#### 🐳 node_modules
+
+<center>![Node modules](../../static/img/cours1/node_modules.png)</center>
+
+Ce dossier contient toutes les dépendances qui permettent le fonctionnement de notre projet Angular. Cela dit, il pèse au minimum `228 Mo` 
+et contient des tonnes et des tonnes de sous-dossiers et fichiers. Nous ne le modifierons jamais manuellement. Nous toucherons seulement
+au contenu des dossiers `src` et `public`.
+
+:::warning
+
+Lorsque vous transférez un projet Angular sur un autre disque / ordinateur, sur Git ou que vous l'envoyez à quelqu'un, il est
+**indispensable** de d'abord supprimer le dossier `node_modules` pour alléger considérablement le transfert. De préférence, supprimez
+également le dossier `.angular`, qui est lourd aussi.
+
+:::
+
+À tout moment, le dossier `node_modules` peut être généré de nouveau en tapant la commande `npm install` (ou `npm i`). N'oubliez pas
+de d'abord ouvrir PowerShell dans le dossier qui contient les fichiers du projet à l'aide de `shift + clic-droit`. 
+(Le dossier qui contient `src`, `public`, etc.)
+
+<center>![Commande npm install](../../static/img/cours1/npm_install.png)</center>
+
+Le dossier `.angular` sera créé sur le pouce lorsque vous exécuterez votre projet à l'aide de la commande `ng serve` plus tard
+et sert simplement à mettre en cache certaines données lors de l'exécution.
+
+#### 🍷 Installer une dépendance
+
+Pour pouvoir utiliser certaines librairies dans un projet Angular, on peut se servir de **npm** pour installer la librairie
+sous forme de dépendance. Par exemple, pour pouvoir utiliser **Bootstrap**, on doit installer deux dépendances : `jquery` et
+`bootstrap`, à l'aide des commandes suivantes :
+
+1. `npm install jquery`
+2. `npm install bootstrap`
+
+N'oubliez pas de d'abord ouvrir PowerShell dans le dossier qui contient les fichiers du projet à l'aide de `shift + clic-droit`. 
+(Le dossier qui contient `src`, `public`, etc.) Si vos dépendances sont bien installées, elles seront visibles dans le fichier 
+`package.json` :
+
+<center>![Dépendances dans le fichier package.json](../../static/img/cours1/dependencies.png)</center>
+
+Notons que des fichiers auront été ajoutés dans `node_modules` également.
+
+#### 🩹 Désinstaller une dépendance
+
+Les dépendances peuvent être désinstallées à l'aide de la commande `npm uninstall nomDeLaDependance`.
+
+### 🏁 Ouvrir et exécuter un projet Angular
+
+Il suffit d'ouvrir le dossier dans **Visual Studio Code** à l'aide d'un clic-droit à l'intérieur du dossier lui-même ou sur le dossier.
+
+<center>![Clic sur le dossier](../../static/img/cours1/open2.png)</center>
+
+<center>... ou encore ...  </center>
+  
+<center>![Clic à l'intérieur du dossier](../../static/img/cours1/open1.png)</center>
+
+Pour exécuter le projet, ouvrez un terminal (Onglet `Terminal` -> `Nouveau terminal`) puis tapez la commande `ng serve`.
+
+<center>![Commande ng serve](../../static/img/cours1/ng_serve.png)</center>
+
+Pour voir votre site Web, ouvrez un navigateur Web de votre choix et tapez l'adresse `localhost:4200`.
+Pour le moment, ce sera le gabarit par défaut qui est affiché :
+
+<center>![Page d'accueil par défaut](../../static/img/cours1/default_index.png)</center>
+  
+  
+:::info
+
+Bonne nouvelle ! Dès que vous modifiez un fichier du projet Angular dans Visual Studio, le site Web sera automatiquement
+mis à jour lorsque vous sauvegarderez le fichier modifié. Il n'est pas nécessaire de refaire la commande `ng serve`. 🫃
+
+:::
+
+### 🕵️‍♂️ Comprendre les fichiers de base
+
+Pour le moment, tous les fichiers que nous aborderons seront situés dans le dossier `src` et ses sous-dossiers.
+
+<center>![Fichiers de départ Angular](../../static/img/cours1/files.png)</center>
+
+:::warning
+
+Pour respecter la convention de nommage en JavaScript / TypeScript, le nom des fichiers ne doit pas contenir de majuscules.
+Essayez de le garder à l'esprit, même si vous êtes habitués à la convention PascalCase en C#.
+
+:::
+
+#### ⛏ main.ts
+
+Nous ne toucherons jamais à ce fichier. En résumé, c'est le _point d'entrée_ lors de l'exécution du code de l'application.
+Il sert à créer l'environnement dans le navigateur pour afficher le site Web.
+
+#### 🏡 index.html et styles.css
+
+<center>![index html](../../static/img/cours1/index.png)</center>
+
+`index.html` est le principal fichier HTML du projet. C'est, croyez le ou non, la seule page Web de tout le projet.
+Pourtant, son contenu correspond seulement au squelette d'une page Web. En gros, l'application Angular chargera dynamiquement
+d'autres morceaux de HTML dans `index.html` (ces morceaux sont des **composants**) lors de la navigation de l'utilisateur,
+ce qui donnera l'illusion d'un site Web avec plusieurs pages.
+
+Généralement, on ne modifiera pas `index.html`, mais seulement des **composants**.
+
+<center>![styles css](../../static/img/cours1/styles.png)</center>
+
+`styles.css` est une feuille de styles globale qui affecte tous les composants du projets Angular. (Bref, tout le HTML
+du projet sera touché par les règles CSS que vous ajouterez dans ce fichier.)
+
+#### 📦 Les composants
+
+Un `composant` est un _morceau de page Web_ représenté par du *HTML*, du *CSS* et du *TypeScript*. Par exemple,
+voici le composant **app** :
+
+<center>![Fichiers d'un composant](../../static/img/cours1/component.png)</center>
+
+* `app.component.html` contient tout le HTML du composant. (Ici, seulement un \<h2\>, un \<p\> et un \<button\>)
+* `app.component.css` contient le CSS qui s'applique au HTML du composant.
+* `app.component.ts` contient des fonctions et des variables qui permettent de rendre la page web dynamique. 
+(Ex : une fonction décrit ce qu'il se passe quand on clique sur le bouton « Dire bonjour »)
+* `app.component.spec.ts` contient des tests unitaires.
+
+À chaque fois qu'on crée un nouveau `composant`, il faudra générer ces 4 fichiers. (Semaine 3)
+
+:::note
+
+Nous n'utiliserons pas les tests unitaires avant la semaine 6. Vous pouvez supprimer le fichier `.spec.tc`
+de vos composants pour aérer votre projet si vous le désirez.
+
+:::
+
+#### 🖼 Affichage du composant app
+
+Par défaut, vous remarquerez que c'est le HTML du composant `app` qui est affiché dans le navigateur lorsqu'on 
+exécute le projet Angular. Pourtant, le `<body> ... </body>` du fichier `index.html` ressemble seulement à ceci :
+
+<center>![body de index html](../../static/img/cours1/body.png)</center>
+
+Vous l'aurez compris, l'élément `<app-root></app-root>` permet d'indiquer qu'on souhaite afficher le composant
+`app` (donc son HTML) ici ! 🗿
+
+<center>![TypeScript du composant app](../../static/img/cours1/appTS.png)</center>
+
+Ci-dessus, on peut voir, dans le fichier `app.component.ts`, que le sélecteur à utiliser pour afficher le composant
+`app` est `<app-root>`. On peut également voir que le HTML qui appartient au composant `app` peut être trouvé dans
+le fichier `app.component.html` et que le CSS qui y est associé est dans le fichier `app.component.css`.
+
+Bref, pour le moment, si vous souhaitez modifier la page Web qui est affiché, modifiez le HTML situé dans le fichier
+`app.component.html`.
+
+Nous n'aborderons pas le fonctionnement d'autres fichiers du projet pour le moment, mais ça viendra ! 🙈
+
+### ✏ Afficher une variable dans la page Web
+
+Il est possible de déclarer des **variables** et des **fonctions** dans la **classe TypeScript** d'un composant.
+Ci-dessous, on a déclaré deux **variables** (`prenom` et `nom`) dans la classe du composant `app`.
+
+```ts showLineNumbers
+export class AppComponent {
+  
+  prenom : string = "Jacqueline";
+  nom = "Robidoux"; // Rappel : Pas obligatoire de typer si la variable est immédiatement initialisée.
+
+}
+```
+
+Pour afficher la valeur de ces variables dans le **template HTML** du composant `app`, nous devrons utiliser
+des doubles accolades  
+`{{ nom_de_la_variable }}`, comme ceci : 
+
+```html showLineNumbers
+<h2>Composant app</h2>
+
+<p>Bonjour {{prenom}} {{nom}}</p>
+```
+
+Le résultat :
+
+<center>![Affichage de variables](../../static/img/cours1/displayVariable.png)</center>
+
+
+### ✨ Afficher le résultat d'une fonction
+
+On déclare une fonction (qui retourne quelque chose !) dans la **classe TypeScript** du composant :
+
+```ts showLineNumbers
+export class AppComponent {
+  
+  divideByThreePlusTwo(n : number) : string{
+    return n + " divisé par 3 plus 2 donne " + (n / 3 + 2);
+  }
+
+}
+```
+
+On appelle la fonction sans oublier pas les doubles accolades dans le HTML :
+
+```html showLineNumbers
+<h2>Composant app</h2>
+
+<p>{{ divideByThreePlusTwo(9) }}</p>
+```
+
+Le résultat :
+
+<center>![Affichage d'une fonction](../../static/img/cours1/displayFunction.png)</center>
+
+### ⚱ Créer et afficher un objet personnalisé
+
+D'abord, créez une nouvelle classe en tentant de respecter ces indications :
+
+* Son fichier aura l'extension `.ts` et sera en minuscules. (Convention JavaScript / TypeScript)
+* Pour bien organiser votre projet, rangez cette classe dans le dossier `app`/`models`.
+* Le nom de la classe doit commencer par une majuscule. (C'est une convention aussi)
+
+<center>![Fichier pour une classe](../../static/img/cours1/classFile.png)</center>
+
+Votre classe pourrait ressembler à ceci. Rappelez-vous que le mot-clé `public` peut être
+utilisé pour simplifier la déclaration des propriétés de la classe. De plus, notez que
+le mot-clé `export` est nécessaire pour que d'autres classes comme celle du composant `app`
+aient accès à la classe que nous déclarons.
+
+```ts showLineNumbers
+export class Npc{
+
+    constructor(
+        public name : string,
+        public dialogue : string,
+        public age : number
+    ){}
+
+}
+```
+
+Nous pourrons maintenant créer une instance de cette nouvelle classe personnalisée dans le composant
+`app`. Vous aurez à **importer** la classe pour pouvoir l'utiliser.
+
+<center>![Importer une classe](../../static/img/cours1/importModel.png)</center>
+
+Utilisez le **constructeur** de votre classe pour instancier un nouvel objet :
+
+<center>![Usage d'un constructeur](../../static/img/cours1/constructorCall.png)</center>
+
+L'instanciation de l'objet devrait ressembler à ceci : 
+
+```ts showLineNumbers
+export class AppComponent {
+  
+  myNpc : Npc = new Npc("Khajiit", "Khajiit has wares... if... you have coin.", 176);
+
+}
+```
+
+Il ne reste plus qu'à gérer l'affichage dans la page Web, qui sera un peu plus délicate puisqu'il s'agit
+d'un objet sophistiqué avec des propriétés :
+
+```html showLineNumbers
+<h2>Composant app</h2>
+
+<p>{{myNpc.name}} est un NPC de {{myNpc.age}} an(s) dont le dialogue est « {{myNpc.dialogue}} »</p>
+```
+
+<center>![Afficahge d'un objet](../../static/img/cours1/displayObject.png)</center>
+
+### 📜 Créer et afficher un tableau
+
+En JavaScript (et donc en TypeScript), les tableaux ressemblent à `["chat", "chien", "perruche"]`.
+
+En TypeScript, on peut déclarer un tableau comme ceci :
+
+```ts showLineNumbers
+myNumbers : number[] = [1, 4, 5, 2];
+```
+
+et afficher ses données dans le HTML comme ceci :
+
+```html showLineNumbers
+<p>J'ADORE les nombres {{myNumbers[0]}}, {{myNumbers[1]}}, {{myNumbers[2]}} et {{myNumbers[3]}} !</p>
+```
+
+<center>![Affichage des éléments d'un tableau](../../static/img/cours1/displayArray.png)</center>
+
+:::note
+
+Lors du Cours 2, nous verrons une méthode plus élégante pour afficher les éléments d'un tableau dans le HTML.
+
+:::
